@@ -2,16 +2,16 @@
   'use strict';
 
   function appConfig($routeProvider) {
-    $routeProvider.otherwise({redirectTo: '/view1'});
+    $routeProvider.otherwise({redirectTo: '/'});
   };
   appConfig.$inject = ['$routeProvider'];
 
   // Declare app level module which depends on views, and components
-  angular.module('myApp', [
+  angular.module('wordgame', [
     'ngRoute',
-    'myApp.view1',
-    'myApp.view2',
-    'myApp.version'
+    'ui.bootstrap',
+    'wordgame.welcome',
+    'wordgame.game'
   ]).
   config(appConfig);
 })();

@@ -31,7 +31,8 @@ var paths = {
     distProd: distPath,
     distScriptsProd: distPath
 };
-var appName = 'myApp';
+var appName = 'wordgame';
+var appTitle = 'Mangled';
 
 // == PIPE SEGMENTS ========
 
@@ -138,7 +139,7 @@ pipes.buildJSDoc = function() {
     ],
     html5Mode: false,
     startPage: '/api',
-    title: "MyApp",
+    title: appTitle,
     titleLink: "/api"
   }
   return gulp.src(paths.scripts)
