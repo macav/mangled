@@ -1,19 +1,20 @@
 (function() {
   'use strict';
 
-  function GameConfig($routeProvider) {
-    $routeProvider.when('/game', {
+  function GameConfig($stateProvider) {
+    $stateProvider.state('game', {
+      url: '/game',
       templateUrl: 'game/game.html',
       controller: 'GameCtrl'
     });
   };
-  GameConfig.$inject = ['$routeProvider'];
+  GameConfig.$inject = ['$stateProvider'];
 
   function GameCtrl() {
 
   };
 
-  angular.module('wordgame.game', ['ngRoute'])
+  angular.module('wordgame.game', ['ui.router'])
 
   .config(GameConfig)
 
