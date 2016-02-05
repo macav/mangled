@@ -7,12 +7,12 @@
       templateUrl: 'game/game.html',
       controller: 'GameCtrl'
     });
-  };
+  }
   GameConfig.$inject = ['$stateProvider'];
 
   function GameCtrl() {
 
-  };
+  }
 
   angular.module('wordgame.game', ['ui.router'])
 

@@ -1,3 +1,8 @@
 <div class="container">
-  Welcome to Mangled.
+  <input type="text" ng-model="ctrl.username" placeholder="Type your username">
+  <button class="btn btn-primary" ng-click="ctrl.startGame()">Start</button>
+  {{ctrl.obj}}
+  <div ng-repeat="score in ctrl.highscores">
+    {{score.username}} - {{score.score}}
+  </div>
 </div>

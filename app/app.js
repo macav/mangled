@@ -3,7 +3,7 @@
 
   function appConfig($urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
-  };
+  }
   appConfig.$inject = ['$urlRouterProvider'];
 
   // Declare app level module which depends on views, and components
