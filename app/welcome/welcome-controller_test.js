@@ -1,8 +1,6 @@
 'use strict';
 
 describe('wordgame.welcome module', function() {
-  FirebaseMock.override();
-  beforeEach(module('wordgame.constants'));
   beforeEach(module('wordgame.welcome'));
   beforeEach(module('wordgame.game'));
 
@@ -28,9 +26,6 @@ describe('wordgame.welcome module', function() {
       }
     });
   });
-  beforeEach(module(function($provide, FirebaseUrl) {
-    $provide.value('$firebaseArray', FirebaseMock.firebaseArray(FirebaseUrl, testData));
-  }));
   var scope, rootScope, ctrl, $httpBackend, state;
 
   beforeEach(inject(function($rootScope, $controller, $state, $templateCache) {
@@ -38,19 +33,12 @@ describe('wordgame.welcome module', function() {
     rootScope = $rootScope;
     state = $state;
     ctrl = $controller('WelcomeCtrl', {$scope: scope, highscores: testData['highscores']});
-    $templateCache.put('game/game.html', '');
-    $templateCache.put('welcome/welcome.html', '');
-    state.go('welcome');
-    rootScope.$digest();
+    spyOn(state, 'go');
   }));
 
   describe('welcome controller', function() {
     it('should have controller defined', function() {
       expect(ctrl).toBeDefined();
-    });
-
-    it('should be in a correct state', function() {
-      expect(state.current.name).toEqual('welcome');
     });
 
     it('should load highscores', function() {
@@ -63,7 +51,7 @@ describe('wordgame.welcome module', function() {
       ctrl.username = 'martin';
       ctrl.startGame();
       rootScope.$digest();
-      expect(state.current.name).toEqual('game');
+      expect(state.go).toHaveBeenCalled();
     });
 
     it('should save username to profile service', inject(function(Profile) {
@@ -77,7 +65,7 @@ describe('wordgame.welcome module', function() {
       ctrl.username = '';
       ctrl.startGame();
       rootScope.$digest();
-      expect(state.current.name).toEqual('welcome');
+      expect(state.go).not.toHaveBeenCalled();
     });
 
   });

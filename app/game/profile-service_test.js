@@ -9,7 +9,7 @@ describe('wordgame.game module', function() {
     Profile = _Profile_;
   }));
 
-  describe('profile server', function() {
+  describe('profile service', function() {
     it('should remember username', function() {
       Profile.setUsername('test1');
       expect(Profile.getUsername()).toEqual('test1');

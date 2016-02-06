@@ -2,7 +2,7 @@
   <input type="text" ng-model="ctrl.username" placeholder="Type your username">
   <button class="btn btn-primary" ng-click="ctrl.startGame()">Start</button>
   {{ctrl.obj}}
-  <div ng-repeat="score in ctrl.highscores">
+  <div ng-repeat="score in ctrl.highscores | orderBy: score:true">
     {{score.username}} - {{score.score}}
   </div>
 </div>

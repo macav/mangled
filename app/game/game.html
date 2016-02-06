@@ -1,1 +1,6 @@
-<p>This is the partial for game.</p>
+<p>Welcome, {{::ctrl.session.username}}</p>
+<p ng-show="ctrl.gameState === ctrl.GAME_STATES.NOT_STARTED">The game starts in {{ctrl.count}}!</p>
+
+<p ng-show="ctrl.gameState === ctrl.GAME_STATES.IN_PROGRESS">Time left: {{ctrl.count}} &nbsp; Word score: {{ctrl.wordScore}} / Total score: {{ctrl.session.score}}</p>
+  Current word: {{ctrl.word}}<br/>
+  <input type="text" ng-model="ctrl.guess" placeholder="Correct word">

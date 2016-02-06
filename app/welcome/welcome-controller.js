@@ -16,7 +16,7 @@
   WelcomeCtrl.$inject = ['$scope', 'highscores', '$state', 'Profile'];
   WelcomeCtrl.resolve = {
     highscores: ['Highscore', function(Highscore) {
-      return Highscore.all;
+      return Highscore.top15;
     }]
   };
 
