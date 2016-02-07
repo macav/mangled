@@ -1,0 +1,9 @@
+{
+  "firebase": "fiery-heat-7049",
+  "public": "dist",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}

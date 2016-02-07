@@ -2,6 +2,13 @@
 
 A simple word puzzle game, where users must guess as many words as they can in a time limit without any mistake.
 
+# Live demo
+
+Live demo can be found at:
+```
+https://fiery-heat-7049.firebaseapp.com/
+```
+
 ### Install Dependencies
 
 Install dependencies via
