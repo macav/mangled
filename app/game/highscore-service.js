@@ -6,8 +6,12 @@
     var highscores = $firebaseArray(ref);
 
     return {
-      all: highscores,
-      top15: $firebaseArray(ref.orderByChild('score').limitToLast(15)),
+      all: function() {
+        return highscores.$loaded();
+      },
+      top15: function() {
+        return $firebaseArray(ref.orderByChild('score').limitToLast(15)).$loaded();
+      },
       publish: function(username, score, words) {
         highscores.$add({username: username, score: score, words: words});
       }

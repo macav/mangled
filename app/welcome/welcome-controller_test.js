@@ -28,11 +28,12 @@ describe('wordgame.welcome module', function() {
   });
   var scope, rootScope, ctrl, $httpBackend, state;
 
-  beforeEach(inject(function($rootScope, $controller, $state, $templateCache) {
+  beforeEach(inject(function($rootScope, $controller, $state, $window) {
     scope = $rootScope.$new();
     rootScope = $rootScope;
     state = $state;
     ctrl = $controller('WelcomeCtrl', {$scope: scope, highscores: testData['highscores']});
+    delete $window.sessionStorage.username;
     spyOn(state, 'go');
   }));
 
@@ -40,6 +41,12 @@ describe('wordgame.welcome module', function() {
     it('should have controller defined', function() {
       expect(ctrl).toBeDefined();
     });
+
+    it('should load username from session storage', inject(function($controller, $rootScope, $window) {
+      $window.sessionStorage.username = 'player1';
+      var tmpCtrl = $controller('WelcomeCtrl', {$scope: scope, highscores: testData['highscores']});
+      expect(tmpCtrl.username).toBe('player1');
+    }));
 
     it('should load highscores', function() {
       expect(ctrl.highscores).toBeDefined();

@@ -1,8 +1,35 @@
 <div class="container">
-  <input type="text" ng-model="ctrl.username" placeholder="Type your username">
-  <button class="btn btn-primary" ng-click="ctrl.startGame()">Start</button>
-  {{ctrl.obj}}
-  <div ng-repeat="score in ctrl.highscores | orderBy: score:true">
-    {{score.username}} - {{score.score}}
+  <form ng-submit="ctrl.startGame()" novalidate>
+    <div class="row">
+      <div class="col-xs-6 col-center-block text-center">
+        <div class="input-group">
+          <input type="text" class="form-control" request-focus="true" ng-model="ctrl.username" placeholder="Type your username">
+          <span class="input-group-btn">
+            <button type="submit" ng-disabled="!ctrl.username" class="btn btn-success">Start</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="row highscores">
+    <div class="col-xs-6 col-center-block text-center">
+      <div class="table-responsive">
+        <span class="table-label">Highscores</span>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>User</th>
+              <th class="text-right">Words</th>
+              <th class="text-right">Score</th>
+            </tr>
+            <tr ng-repeat="score in ctrl.highscores | orderBy: score:true">
+              <td class="text-left" ng-bind="::score.username"></td>
+              <td class="text-right" ng-bind="::score.words"></td>
+              <td class="text-right" ng-bind="::score.score"></td>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
   </div>
 </div>

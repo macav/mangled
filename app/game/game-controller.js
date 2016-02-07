@@ -4,7 +4,7 @@
   function GameCtrl($scope, Profile, words, session, $interval) {
     var self = this;
     var shuffleArray = function(arr) {
-      for (var i = 0; i < arr.length; i++) {
+      for (var i = 0; i < arr.length/2; i++) {
         var a = parseInt(Math.random() * arr.length);
         var b = parseInt(Math.random() * arr.length);
         var tmp = arr[a];
@@ -15,6 +15,7 @@
 
     shuffleArray(words);
     var GAME_DURATION = 40;
+    var GAME_INITIAL_COUNTDOWN = 5;
     self.GAME_STATES = {
       NOT_STARTED: 1,
       IN_PROGRESS: 2,
@@ -40,7 +41,7 @@
       self.words = words;
       self.wordScore = 0;
       self.gameState = self.GAME_STATES.NOT_STARTED;
-      self.count = 3;
+      self.count = GAME_INITIAL_COUNTDOWN;
       self.session.score = 0;
       self.session.words = 0;
       self.word = null;
@@ -69,6 +70,7 @@
       self.word = self.words.shift().$value;
       self.correctWord = self.word;
       self.wordScore = Math.floor(Math.pow(1.95, self.word.length/3));
+      self.wordMaxScore = self.wordScore;
       // shuffle letters
       var arr = self.word.split('');
       shuffleArray(arr);
@@ -77,7 +79,7 @@
     $scope.$watch(function() {
       return self.guess;
     }, function(newVal, oldVal) {
-      if (newVal && oldVal && newVal.length < oldVal.length) {
+      if (oldVal && (newVal === '' || (newVal && newVal.length < oldVal.length))) {
         if (self.wordScore > 0) {
           self.wordScore -= 1;
         }

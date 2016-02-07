@@ -6,13 +6,26 @@
   }
   appConfig.$inject = ['$urlRouterProvider'];
 
-  // Declare app level module which depends on views, and components
+  function AppRun($rootScope) {
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+      if (toState.resolve) {
+          $rootScope.loading = true;
+      }
+    });
+    $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+        if (toState.resolve) {
+            $rootScope.loading = false;
+        }
+    });
+  }
+  AppRun.$inject = ['$rootScope'];
+  
   angular.module('wordgame', [
     'ui.bootstrap',
     'ui.router',
-    'wordgame.constants',
     'wordgame.welcome',
     'wordgame.game'
   ]).
-  config(appConfig);
+  config(appConfig)
+  .run(AppRun);
 })();

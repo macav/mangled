@@ -4,6 +4,7 @@
   function WelcomeCtrl($scope, highscores, $state, Profile) {
     var self = this;
     self.highscores = highscores;
+    self.username = Profile.getUsername();
 
     self.startGame = function() {
       if (!self.username) {
@@ -16,7 +17,7 @@
   WelcomeCtrl.$inject = ['$scope', 'highscores', '$state', 'Profile'];
   WelcomeCtrl.resolve = {
     highscores: ['Highscore', function(Highscore) {
-      return Highscore.top15;
+      return Highscore.top15();
     }]
   };
 

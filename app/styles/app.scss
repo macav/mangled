@@ -1,31 +1,57 @@
 /* app css stylesheet */
 @import "theme";
 
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
+.app-label {
+  float: inherit;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 50px;
+}
+.col-center-block {
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.table-label {
+  font-size: 16px;
+  font-weight: bold;
 }
 
-.menu:before {
-  content: "[";
+.row.highscores {
+  margin-top: 25px;
 }
 
-.menu:after {
-  content: "]";
+.loading-bar {
+  margin-top: -20px;
+  .progress-bar,
+  .progress {
+    height: 6px;
+  }
 }
 
-.menu > li {
-  display: inline;
-}
+.game-intro {
+  font-size: 16px;
 
-.menu > li:before {
-  content: "|";
-  padding-right: 0.3em;
+  .info-text {
+    font-size: 13px;
+  }
+  .countdown {
+    margin-top: 30px;
+    font-weight: bold;
+  }
 }
-
-.menu > li:nth-child(1):before {
-  content: "";
-  padding: 0;
+.game {
+  .current-word {
+    font-size: 50px;
+    font-family: courier;
+  }
+  .statusbar {
+    padding-top: 10px;
+    text-align: left;
+    font-size: 16px;
+    .word-score {
+      min-width: 100px;
+    }
+  }
 }
