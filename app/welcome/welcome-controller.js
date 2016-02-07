@@ -1,6 +1,13 @@
 (function() {
   'use strict';
 
+  /**
+   * @ngdoc controller
+   * @name wordgame.welcome:WelcomeCtrl
+   * @description
+   * # Welcome controller is used as landing page
+   * It displays highscores table.
+   */
   function WelcomeCtrl($scope, highscores, $state, Profile) {
     var self = this;
     self.highscores = highscores;
@@ -10,6 +17,16 @@
 
     ///
 
+    /**
+     * @ngdoc method
+     * @name wordgame.welcome:WelcomeCtrl.startGame
+     * @methodOf wordgame.welcome:WelcomeCtrl
+     * @requires Highscore, Profile
+     * @description
+     * # Start game
+     * Transitions to game state, starts the game with specified username.
+     * Username is set to Profile service
+     */
     function startGame() {
       if (!self.username) {
         return;
