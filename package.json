@@ -1,8 +1,8 @@
 {
-  "name": "angular-gulp-seed",
+  "name": "mangled",
   "private": true,
-  "version": "0.0.0",
-  "description": "A starter project for AngularJS with Gulp",
+  "version": "0.1.0",
+  "description": "Mangled - a word game",
   "license": "MIT",
   "devDependencies": {
     "body-parser": "^1.5.2",
