@@ -1,5 +1,4 @@
 @charset "UTF-8";
-/* app css stylesheet */
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -7758,36 +7757,12 @@ button.close {
   animation: zoomOut 0.5s;
 }
 
-.app-label {
-  float: inherit;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 50px;
+.game.ng-enter {
+  animation: fadeIn 0.5s;
 }
 
-.col-center-block {
-  float: none;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.table-label {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.row.highscores {
-  margin-top: 25px;
-}
-
-.loading-bar {
-  margin-top: -20px;
-}
-
-.loading-bar .progress-bar,
-.loading-bar .progress {
-  height: 6px;
+.game-over.ng-enter {
+  animation: rubberBand 1s;
 }
 
 .game-intro {
@@ -7843,10 +7818,6 @@ button.close {
   display: block;
 }
 
-.game.ng-enter {
-  animation: fadeIn 0.5s;
-}
-
 .game-over {
   font-size: 16px;
 }
@@ -7855,6 +7826,34 @@ button.close {
   margin-top: 30px;
 }
 
-.game-over.ng-enter {
-  animation: rubberBand 1s;
+.table-label {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.row.highscores {
+  margin-top: 25px;
+}
+
+.app-label {
+  float: inherit;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 50px;
+}
+
+.col-center-block {
+  float: none;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.loading-bar {
+  margin-top: -20px;
+}
+
+.loading-bar .progress-bar,
+.loading-bar .progress {
+  height: 6px;
 }

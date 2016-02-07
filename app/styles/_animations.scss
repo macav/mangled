@@ -1,0 +1,29 @@
+.main-ui-container {
+  position: relative;
+}
+[ui-view].ng-enter, [ui-view].ng-leave {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+[ui-view].ng-enter {
+  animation: zoomIn 1s;
+}
+
+[ui-view].ng-leave {
+  animation: zoomOut 0.5s;
+}
+
+@mixin slow-animation-speed() {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+}
+
+.game.ng-enter {
+  animation: fadeIn 0.5s;
+}
+
+.game-over.ng-enter {
+  animation: rubberBand 1s;
+}

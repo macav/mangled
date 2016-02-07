@@ -25,9 +25,10 @@ var paths = {
     sassStylesOutput: appPath + '/styles',
     vendorStyles: [vendorPath + '**/*.css'],
     assets: appPath + 'assets/**/*',
+    index: appPath + 'index.html',
     images: appPath + 'images/**/*',
     fonts: [vendorPath + '**/*.woff', vendorPath + '**/*.woff2', vendorPath + '**/*.ttf'],
-    partials: [appPath + '**/*.html', '!' + vendorPath + '**/*.html'],
+    partials: [appPath + '**/*.html', '!' + appPath + 'index.html', '!' + vendorPath + '**/*.html'],
     distProd: distPath,
     distScriptsProd: distPath
 };
@@ -90,7 +91,7 @@ pipes.scriptedPartials = function() {
         .pipe(plugins.htmlhint.failReporter())
         .pipe(plugins.htmlmin({collapseWhitespace: true, removeComments: true}))
         .pipe(plugins.angularTemplatecache({
-            root: 'static/',
+            // root: 'static/',
             module: appName
         }));
 };
@@ -116,6 +117,12 @@ pipes.builtVendorStylesProd = function() {
 pipes.processedAssetsProd = function() {
     return gulp.src(paths.assets)
         .pipe(gulp.dest(paths.distProd + '/assets/'));
+};
+
+pipes.validatedIndex = function() {
+    return gulp.src(paths.index)
+        .pipe(plugins.htmlhint())
+        .pipe(plugins.htmlhint.reporter());
 };
 
 pipes.processedImagesProd = function() {
@@ -155,7 +162,8 @@ pipes.builtIndexProd = function() {
     var appStyles = pipes.builtStylesProd();
     pipes.buildJSDoc();
 
-    return (gulp.dest(paths.distProd)) // write first to get relative path for inject
+    return pipes.validatedIndex()
+        .pipe(gulp.dest(paths.distProd)) // write first to get relative path for inject
         .pipe(plugins.inject(vendorScripts, {relative: true, name: 'bower'}))
         .pipe(plugins.inject(appScripts, {relative: true}))
         .pipe(plugins.inject(vendorStyles, {relative: true, name: 'bower'}))

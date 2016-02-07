@@ -6,13 +6,17 @@
     self.highscores = highscores;
     self.username = Profile.getUsername();
 
-    self.startGame = function() {
+    self.startGame = startGame;
+
+    ///
+
+    function startGame() {
       if (!self.username) {
         return;
       }
       Profile.setUsername(self.username);
       $state.go('game');
-    };
+    }
   }
   WelcomeCtrl.$inject = ['$scope', 'highscores', '$state', 'Profile'];
   WelcomeCtrl.resolve = {

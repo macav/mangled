@@ -1,10 +1,10 @@
 (function() {
   'use strict';
-
-  function appConfig($urlRouterProvider) {
+  
+  function AppConfig($urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
   }
-  appConfig.$inject = ['$urlRouterProvider'];
+  AppConfig.$inject = ['$urlRouterProvider'];
 
   function AppRun($rootScope) {
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
@@ -27,6 +27,6 @@
     'wordgame.welcome',
     'wordgame.game'
   ]).
-  config(appConfig)
+  config(AppConfig)
   .run(AppRun);
 })();

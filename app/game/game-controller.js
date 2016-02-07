@@ -3,17 +3,7 @@
 
   function GameCtrl($scope, Profile, words, session, $interval) {
     var self = this;
-    var shuffleArray = function(arr) {
-      for (var i = 0; i < arr.length/2; i++) {
-        var a = parseInt(Math.random() * arr.length);
-        var b = parseInt(Math.random() * arr.length);
-        var tmp = arr[a];
-        arr[a] = arr[b];
-        arr[b] = tmp;
-      }
-    };
 
-    shuffleArray(words);
     var GAME_DURATION = 40;
     var GAME_INITIAL_COUNTDOWN = 5;
     self.GAME_STATES = {
@@ -25,12 +15,26 @@
     self.session = session;
     self.lastStats = {};
 
-    var startGame = function() {
+    self.resetGame = resetGame;
+    self.nextWord = nextWord;
+
+    self.resetGame();
+    shuffleArray(words);
+
+    $scope.$watch(function() {
+      return self.guess;
+    }, guessChanged);
+    $scope.$on('$destroy', scopeDestroyed);
+
+    ///
+
+    function startGame() {
       self.gameState = self.GAME_STATES.IN_PROGRESS;
       self.count = GAME_DURATION;
       self.nextWord();
-    };
-    var finishGame = function() {
+    }
+
+    function finishGame() {
       if (self.session) {
         self.lastStats = {
           score: self.session.score,
@@ -40,9 +44,9 @@
       }
       self.gameState = self.GAME_STATES.FINISHED;
       $interval.cancel(gameCountdown);
-    };
+    }
 
-    self.resetGame = function(start) {
+    function resetGame(start) {
       self.words = [].concat(words);
       self.wordScore = 0;
       self.session.score = 0;
@@ -68,10 +72,9 @@
           }
         }
       }, 1000);
-    };
-    self.resetGame();
+    }
 
-    self.nextWord = function() {
+    function nextWord() {
       if (!self.words.length) {
         finishGame();
         return;
@@ -85,10 +88,9 @@
       var arr = self.word.split('');
       shuffleArray(arr);
       self.word = arr.join('');
-    };
-    $scope.$watch(function() {
-      return self.guess;
-    }, function(newVal, oldVal) {
+    }
+
+    function guessChanged(newVal, oldVal) {
       if (oldVal && (newVal === '' || (newVal && newVal.length < oldVal.length))) {
         if (self.wordScore > 0) {
           self.wordScore -= (newVal ? (oldVal.length - newVal.length) : oldVal.length);
@@ -103,15 +105,26 @@
         delete self.guess;
         self.nextWord();
       }
-    });
-    $scope.$on('$destroy', function() {
+    }
+
+    function scopeDestroyed() {
       self.session.$remove();
-    });
+    }
+
+    function shuffleArray(arr) {
+      for (var i = 0; i < arr.length/2; i++) {
+        var a = parseInt(Math.random() * arr.length);
+        var b = parseInt(Math.random() * arr.length);
+        var tmp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = tmp;
+      }
+    }
   }
   GameCtrl.$inject = ['$scope', 'Profile', 'words', 'session', '$interval'];
   GameCtrl.resolve = {
     words: ['Word', function(Word) {
-      return Word.all;
+      return Word.all();
     }],
     session: ['Profile', 'UserSession', function(Profile, UserSession) {
       return UserSession.startNew(Profile.getUsername());
@@ -129,9 +142,7 @@
   }
   GameConfig.$inject = ['$stateProvider'];
 
-  angular.module('wordgame.game', ['ui.router'])
-
+  angular.module('wordgame.game')
   .config(GameConfig)
-
   .controller('GameCtrl', GameCtrl);
 })();

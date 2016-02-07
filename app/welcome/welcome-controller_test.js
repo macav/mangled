@@ -2,7 +2,6 @@
 
 describe('wordgame.welcome module', function() {
   beforeEach(module('wordgame.welcome'));
-  beforeEach(module('wordgame.game'));
 
   var testData = {
     highscores: []

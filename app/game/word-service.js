@@ -6,7 +6,9 @@
     var words = $firebaseArray(ref);
 
     return {
-      all: words
+      all: function() {
+        return words.$loaded();
+      }
     };
   }
   WordService.$inject = ['$firebaseArray', 'FirebaseUrl'];

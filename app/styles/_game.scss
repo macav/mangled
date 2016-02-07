@@ -1,0 +1,57 @@
+.game-intro {
+  font-size: 16px;
+
+  .info-text {
+    font-size: 13px;
+  }
+
+  .countdown {
+    margin-top: 30px;
+    font-weight: bold;
+  }
+}
+.game {
+  .user-input {
+    @include slow-animation-speed();
+  }
+
+  .current-word {
+    .word {
+      @include slow-animation-speed();
+    }
+    font-size: 50px;
+    font-family: courier;
+  }
+
+  .statusbar {
+    padding-top: 10px;
+    text-align: left;
+    font-size: 16px;
+
+    .word-score {
+      min-width: 100px;
+
+      .incorrect {
+        display: none;
+        color: red;
+        right: 50px;
+        margin-top: 10px;
+        position: absolute;
+        font-size: 30px;
+        -webkit-animation-duration: 3s;
+        animation-duration: 3s;
+      }
+      .incorrect.animated {
+        display: block;
+      }
+    }
+  }
+}
+
+.game-over {
+  font-size: 16px;
+
+  .controls {
+    margin-top: 30px;
+  }
+}

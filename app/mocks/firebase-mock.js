@@ -10,6 +10,7 @@ var FirebaseMock = {
     };
   },
   firebaseObject: function(baseUrl, testData) {
+    var self = this;
     return {
       $extend: function(obj) {
         for (var i in obj) {
@@ -32,12 +33,13 @@ var FirebaseMock = {
       $add: self.add
     };
     return function(firebase) {
+      var i;
       var found = false;
       for(var key in testData) {
         if (baseUrl+key === firebase.ref) {
           found = true;
           collection = [].concat(testData[key]);
-          for (var i in funcs) {
+          for (i in funcs) {
             collection[i] = funcs[i];
           }
           return collection;
@@ -45,7 +47,7 @@ var FirebaseMock = {
       }
       if (!found) {
         collection = [];
-        for (var i in funcs) {
+        for (i in funcs) {
           collection[i] = funcs[i];
         }
         return collection;
