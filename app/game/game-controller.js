@@ -91,7 +91,7 @@
     }, function(newVal, oldVal) {
       if (oldVal && (newVal === '' || (newVal && newVal.length < oldVal.length))) {
         if (self.wordScore > 0) {
-          self.wordScore -= 1;
+          self.wordScore -= (newVal ? (oldVal.length - newVal.length) : oldVal.length);
           $scope.$broadcast('animate:word-incorrect');
         }
       }

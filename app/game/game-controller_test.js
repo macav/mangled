@@ -114,6 +114,18 @@ describe('wordgame.game module', function() {
       expect(ctrl.wordScore).toEqual(maxScore-1);
     });
 
+    it('should decrease word score if more than one characters are deleted from the guess at once', function() {
+      ctrl.nextWord();
+      var maxScore = computeWordScore(ctrl.correctWord);
+      expect(ctrl.wordScore).toEqual(maxScore);
+      ctrl.guess = 'abc';
+      scope.$digest();
+      expect(ctrl.wordScore).toEqual(maxScore);
+      ctrl.guess = 'a';
+      scope.$digest();
+      expect(ctrl.wordScore).toEqual(maxScore-2);
+    });
+
     it('should not decrease word score below 0', function() {
       ctrl.nextWord();
       var maxScore = computeWordScore(ctrl.correctWord);
