@@ -7,8 +7,14 @@
 
     var UserSession = $firebaseObject.$extend({
       publishAndClose: function() {
-        Highscore.publish(this.username, this.score, this.words);
+        this.publishScore();
         return this.$remove();
+      },
+      publishScore: function() {
+        Highscore.publish(this.username, this.score, this.words);
+        this.score = 0;
+        this.words = 0;
+        this.$save();
       }
     });
 

@@ -12,6 +12,7 @@
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="bower_components/animate.css/animate.css">
   <!-- endinject -->
   <!-- inject:css -->
   <link rel="stylesheet" href="styles/app.css">
@@ -26,11 +27,14 @@
   <div ng-show="loading" class="col-center-block loading-bar">
     <uib-progressbar class="progress-striped active" value="dynamic" type="danger"></uib-progressbar>
   </div>
-  <div ui-view></div>
+  <div class="main-ui-container">
+    <div ui-view id="main-ui"></div>
+  </div>
 
   <!-- bower:js -->
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
   <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
   <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <script src="bower_components/firebase/firebase.js"></script>
@@ -43,6 +47,7 @@
   <script src="game/game-module.js"></script>
   <script src="components/utils/utils-module.js"></script>
   <script src="components/utils/requestFocus-directive.js"></script>
+  <script src="components/utils/animateOn-directive.js"></script>
   <script src="welcome/welcome-controller.js"></script>
   <script src="game/game-controller.js"></script>
   <script src="game/highscore-service.js"></script>

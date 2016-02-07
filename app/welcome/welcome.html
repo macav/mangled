@@ -1,7 +1,7 @@
 <div class="container">
   <form ng-submit="ctrl.startGame()" novalidate>
-    <div class="row">
-      <div class="col-xs-6 col-center-block text-center">
+    <div class="row animated bounceInDown">
+      <div class="col-xs-12 col-md-6 col-center-block text-center">
         <div class="input-group">
           <input type="text" class="form-control" request-focus="true" ng-model="ctrl.username" placeholder="Type your username">
           <span class="input-group-btn">
@@ -11,8 +11,8 @@
       </div>
     </div>
   </form>
-  <div class="row highscores">
-    <div class="col-xs-6 col-center-block text-center">
+  <div class="row highscores animated fadeIn">
+    <div class="col-xs-12 col-md-6 col-center-block text-center">
       <div class="table-responsive">
         <span class="table-label">Highscores</span>
         <table class="table">

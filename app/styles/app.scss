@@ -1,6 +1,23 @@
 /* app css stylesheet */
 @import "theme";
 
+.main-ui-container {
+  position: relative;
+}
+[ui-view].ng-enter, [ui-view].ng-leave {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+[ui-view].ng-enter {
+  animation: zoomIn 1s;
+}
+
+[ui-view].ng-leave {
+  animation: zoomOut 0.5s;
+}
+
 .app-label {
   float: inherit;
   text-align: center;
@@ -42,7 +59,17 @@
   }
 }
 .game {
+  @mixin slow-animation-speed() {
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
+  }
+  .user-input {
+    @include slow-animation-speed();
+  }
   .current-word {
+    .word {
+      @include slow-animation-speed();
+    }
     font-size: 50px;
     font-family: courier;
   }
@@ -52,6 +79,33 @@
     font-size: 16px;
     .word-score {
       min-width: 100px;
+      .incorrect {
+        display: none;
+        color: red;
+        right: 50px;
+        margin-top: 10px;
+        position: absolute;
+        font-size: 30px;
+        -webkit-animation-duration: 3s;
+        animation-duration: 3s;
+      }
+      .incorrect.animated {
+        display: block;
+      }
     }
   }
+}
+.game.ng-enter {
+  animation: fadeIn 0.5s;
+}
+.game-over {
+  font-size: 16px;
+
+  .controls {
+    margin-top: 30px;
+  }
+}
+
+.game-over.ng-enter {
+  animation: rubberBand 1s;
 }

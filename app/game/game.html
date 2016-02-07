@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row game-intro" ng-if="ctrl.gameState === ctrl.GAME_STATES.NOT_STARTED">
-    <div class="col-xs-6 col-center-block text-center">
+    <div class="col-xs-12 col-md-6 col-center-block text-center">
       <h1 class="text-primary">
         Welcome, {{::ctrl.session.username}}!
       </h1>
@@ -13,11 +13,11 @@
     </div>
   </div>
   <div class="row game" ng-if="ctrl.gameState === ctrl.GAME_STATES.IN_PROGRESS">
-    <div class="col-xs-6 col-center-block text-center">
+    <div class="col-xs-12 col-md-6 col-center-block text-center">
       <div class="current-word well">
-        {{ctrl.word}}
+        <div animate-on="word-change" class="word" animation="bounceInDown">{{ctrl.word}}</div>
       </div>
-      <div class="user-input">
+      <div class="user-input" animate-on="word-correct" animation="pulse">
         <input type="text" class="form-control" request-focus="true" ng-model="ctrl.guess" placeholder="Correct word">
       </div>
       <div class="statusbar">
@@ -27,8 +27,24 @@
         </div>
         <div class="pull-right">
           <div class="word-score">
+            <div class="incorrect" animate-on="word-incorrect" animation="zoomOut">-1</div>
             <uib-progressbar class="progress-striped active" max="ctrl.wordMaxScore" value="ctrl.wordScore">{{ctrl.wordScore}} / {{ctrl.wordMaxScore}}</uib-progressbar>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row game-over" ng-if="ctrl.gameState === ctrl.GAME_STATES.FINISHED">
+    <div class="col-xs-12 col-md-6 col-center-block text-center">
+      <h1 class="text-primary">
+        Game over!
+      </h1>
+      <div>
+        You scored <strong>{{ctrl.lastStats.score}}</strong> and managed to unmangle <strong>{{ctrl.lastStats.words}}</strong> words!
+      </div>
+      <div class="controls">
+        <button class="btn btn-primary" ng-click="ctrl.resetGame(true)">Try again</button>
+        <button class="btn btn-default" ui-sref="welcome">See highscores</button>
       </div>
     </div>
   </div>

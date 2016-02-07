@@ -19,10 +19,11 @@
     });
   }
   AppRun.$inject = ['$rootScope'];
-  
+
   angular.module('wordgame', [
     'ui.bootstrap',
     'ui.router',
+    'ngAnimate',
     'wordgame.welcome',
     'wordgame.game'
   ]).

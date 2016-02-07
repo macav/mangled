@@ -7740,6 +7740,24 @@ button.close {
   }
 }
 
+.main-ui-container {
+  position: relative;
+}
+
+[ui-view].ng-enter, [ui-view].ng-leave {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+[ui-view].ng-enter {
+  animation: zoomIn 1s;
+}
+
+[ui-view].ng-leave {
+  animation: zoomOut 0.5s;
+}
+
 .app-label {
   float: inherit;
   text-align: center;
@@ -7785,9 +7803,19 @@ button.close {
   font-weight: bold;
 }
 
+.game .user-input {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+}
+
 .game .current-word {
   font-size: 50px;
   font-family: courier;
+}
+
+.game .current-word .word {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
 }
 
 .game .statusbar {
@@ -7798,4 +7826,35 @@ button.close {
 
 .game .statusbar .word-score {
   min-width: 100px;
+}
+
+.game .statusbar .word-score .incorrect {
+  display: none;
+  color: red;
+  right: 50px;
+  margin-top: 10px;
+  position: absolute;
+  font-size: 30px;
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+}
+
+.game .statusbar .word-score .incorrect.animated {
+  display: block;
+}
+
+.game.ng-enter {
+  animation: fadeIn 0.5s;
+}
+
+.game-over {
+  font-size: 16px;
+}
+
+.game-over .controls {
+  margin-top: 30px;
+}
+
+.game-over.ng-enter {
+  animation: rubberBand 1s;
 }
