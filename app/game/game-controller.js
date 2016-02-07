@@ -83,6 +83,7 @@
       self.session.score = 0;
       self.session.words = 0;
       self.word = null;
+      delete self.guess;
 
       if (start) {
         startGame();
