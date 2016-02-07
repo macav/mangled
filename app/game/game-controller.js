@@ -25,7 +25,6 @@
     self.nextWord = nextWord;
 
     self.resetGame();
-    shuffleArray(words);
 
     $scope.$watch(function() {
       return self.guess;
@@ -79,6 +78,7 @@
      */
     function resetGame(start) {
       self.words = [].concat(words);
+      shuffleArray(self.words);
       self.wordScore = 0;
       self.session.score = 0;
       self.session.words = 0;
